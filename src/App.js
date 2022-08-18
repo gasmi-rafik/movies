@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import Navbarr from './components/Navbarr';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {moviesData} from  './components/MoviesData'
+import MovieList from './components/MovieList';
+import AddMovie from './components/AddMovie';
 function App() {
+ const [movies , setMovies]=useState(moviesData)
+ const [name , setName] =useState("")
+ const [searchRate , setSearchRate] =useState(0)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Navbarr setName={setName} setSearchRate={setSearchRate} />
+     <MovieList movies={movies} name={name} searchRate={searchRate}/>
+     <AddMovie setMovies={setMovies} movies={movies}/>
     </div>
   );
 }
